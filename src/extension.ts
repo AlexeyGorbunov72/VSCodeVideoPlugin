@@ -18,6 +18,9 @@ export function activate(context: vscode.ExtensionContext) {
 	// The commandId parameter must match the command field in package.json
 	
 	let disposable = vscode.commands.registerCommand('playvideovscode.helloWorld',   () => {
+		
+	});
+	let playVideo = vscode.commands.registerCommand('playvideovscode.playVideo', () => {
 		vscode.window.showInformationMessage("Start video!");
 		const file = readFileSync('/Users/Retard/video/config', 'utf-8');
 		var frameCount: number = +file;
@@ -27,6 +30,7 @@ export function activate(context: vscode.ExtensionContext) {
 			changeFrame(0, frameCount, document);
 		}
 	});
+	context.subscriptions.push(playVideo);
 	context.subscriptions.push(disposable);
 }
 async function changeFrame(i: number, framesAmount: number, document: vscode.TextDocument){
